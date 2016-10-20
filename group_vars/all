@@ -11,7 +11,7 @@ ambari:
   stack_version : 2.3
   # blueprint & cluster creation
   blueprint_name : hadoop
-  cluster_name : netdefense
+  cluster_name : test
 
   # hadoop configuration
   default_password : hadoop

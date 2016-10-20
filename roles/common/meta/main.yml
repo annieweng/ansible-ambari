@@ -1,6 +1,6 @@
 ---
 dependencies:
- - { role: geerlingguy.repo-epel }
+ - {  }
 
 galaxy_info:
   author: Annie Weng

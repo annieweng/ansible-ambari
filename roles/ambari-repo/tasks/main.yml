@@ -1,4 +1,7 @@
+
 ---
+
+    
 - name: Install Ambari repo.
   get_url: url="{{ ambari_repo_url }}" dest=/etc/yum.repos.d/ambari.repo
 - name: Install HDP repo.
