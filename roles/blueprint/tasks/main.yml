@@ -1,7 +1,12 @@
 ---
   - name : wait for agents to register
     command : sleep 10
-
+  #- name: reset ambari server database
+  #  command: "{{item}}"
+  #   - ambari-server stop
+  #   - ambari-server reset
+  #   - ambari-server start
+      
   - name : copy hosts_map to ambari-server
     template: src=hosts-map.json.j2 dest=/opt/ambari-install/hosts-map.json
 

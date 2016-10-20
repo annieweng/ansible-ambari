@@ -1,7 +1,7 @@
 ---
-  #- name: Install libselinux-python
-    #yum: name=libselinux-python state=installed
 
+
+   
   - name: install default packages
     yum: name={{ item }} state=latest
     with_items:
@@ -9,12 +9,30 @@
       - ntp
       - wget
       - screen
-      - java7-devel
+      - java-1.8.0-openjdk-devel
 ##      - "@Development tools"
+  - name: Hard set the hostname
+    hostname: name={{ ansible_hostname}}.{{cluster_domain}}
+  
+  # DNS / hosts
+  - name: update hosts files to /etc/hosts
+    template: src=etc_hosts dest=/etc/hosts
+  
+  - stat: path=/etc/cloud/cloud.cfg
+    register: isOpenstack
 
+  - name: take out update_host prevent hostname changed by cloud-init
+    lineinfile:
+      dest=/etc/cloud/cloud.cfg
+      regexp="update_hostname"
+      state=absent
+    when: isOpenstack.stat.exists == True
+  
   - name: Disable selinux
     selinux: state=disabled
 
+
+      
   #- name: disable selinux
   #  command: /sbin/setenforce 0
   #  ignore_errors: True
@@ -27,9 +45,13 @@
 
   #- name:  Set vm.swappiness to 0
     #sysctl: name=vm.swappiness value=0 state=present reload=yes sysctl_set=yes ignoreerrors=yes
-
+  - name: Check if  iptables Service Exists
+    stat: path=/etc/init.d/iptables
+    register: iptables_status
+    
   - name: ensure iptables is stopped and is not running at boot time.
     service: name=iptables state=stopped enabled=no
+    when: iptables_status.stat.exists
 
   #- name: ensure iptables6 is stopped and is not running at boot time.
     #service: name=iptables6 state=stopped enabled=no

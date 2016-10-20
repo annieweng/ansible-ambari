@@ -1,0 +1,1 @@
+curl -k  -u admin:admin -i -H 'X-Requested-By: ambari' -X DELETE http://ambari-server.dsra.local:8080/api/v1/blueprints

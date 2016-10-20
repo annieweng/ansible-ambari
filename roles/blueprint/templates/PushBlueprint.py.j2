@@ -33,7 +33,8 @@ def main():
 
   	# Push blueprint
   	ambari_url = "http://" + AMBARI_SERVER + ":8080/api/v1/blueprints/" + BLUEPRINT_NAME + "?validate_topology=false"
-  	r = requests.post(ambari_url, blueprint_data, auth=("admin","admin"), headers={"X-Requested-By":"ambari-script"})
+  	r = requests.post(ambari_url, blueprint_data, auth=("admin","admin"), headers={"X-Requested-By":"ambari-script"},
+  	verify=False)
   	if r.status_code != 201:
   		print "return code is %s" % r.status_code
   		print r.text
@@ -47,13 +48,13 @@ def main():
 	# Push blueprint
         ambari_url = "http://" + AMBARI_SERVER + ":8080/api/v1/clusters/" + CLUSTER_NAME
   	print ambari_url
-  	r = requests.post(ambari_url, maps_data, auth=("admin","admin"), headers={"X-Requested-By":"ambari-script"})
+  	r = requests.post(ambari_url, maps_data, auth=("admin","admin"), headers={"X-Requested-By":"ambari-script"}, verify=False)
   	if r.status_code != 202:
   		print "return code is %s" % r.status_code
   		print r.text
 
   	ambari_url = "http://" + AMBARI_SERVER + ":8080/api/v1/clusters"
-  	r = requests.get(ambari_url, auth=("admin","admin"))
+  	r = requests.get(ambari_url, auth=("admin","admin"), verify=False)
 
 if __name__ == "__main__":
     main()

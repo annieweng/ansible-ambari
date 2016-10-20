@@ -1,9 +1,3 @@
----
-- name: Ambari server
-  hosts: ambari
-  roles:
-    - ambari-server
-
 - name: Ambari agent
   hosts: all
   roles:
@@ -13,3 +7,4 @@
   hosts: ambari
   roles:
     - blueprint
+

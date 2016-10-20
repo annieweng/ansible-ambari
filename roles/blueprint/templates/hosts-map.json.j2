@@ -6,7 +6,7 @@
       "name" : "ambari",
       "hosts" : [
         {
-          "fqdn" : "{{ hostvars[groups['ambari'][0]]['ansible_fqdn'] }}"
+          "fqdn" : "{{ hostvars[groups['ambari'][0]]['inventory_hostname'] }}"
         }
       ]
     },
@@ -14,7 +14,7 @@
       "name" : "master1",
       "hosts" : [
         {
-          "fqdn" : "{{ hostvars[groups['master1'][0]]['ansible_fqdn'] }}"
+          "fqdn" : "{{ hostvars[groups['master1'][0]]['inventory_hostname'] }}"
         }
       ]
     },
@@ -22,7 +22,7 @@
       "name" : "master2",
       "hosts" : [
         {
-          "fqdn" : "{{ hostvars[groups['master2'][0]]['ansible_fqdn'] }}"
+          "fqdn" : "{{ hostvars[groups['master2'][0]]['inventory_hostname'] }}"
         }
       ]
     },
@@ -31,7 +31,7 @@
       "hosts" : [
       {% for host in groups['slaves'] %}
         {
-          "fqdn" : "{{ hostvars[host]['ansible_fqdn'] }}"
+          "fqdn" : "{{ hostvars[host]['inventory_hostname'] }}"
         }{% if not loop.last %}
         ,
         {% endif %}

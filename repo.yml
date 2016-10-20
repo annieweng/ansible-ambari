@@ -1,0 +1,4 @@
+- name: create a local ambari HDP repository
+  hosts: ambari_repo
+  roles:
+    - ambari-repo

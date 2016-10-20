@@ -1,16 +1,16 @@
 ---
-dependencies: []
-    #  - { role: seanorama.ambari-repo }
+dependencies:
+ - { role: common }
+ - { role: ambari-repo-client }
+
 
 galaxy_info:
-  author: seanorama
-  description: Installation for Apache Ambari server
-  company: "Sean Roberts"
+  author: Annie Weng
+  description: Installation for Apache Ambari agent
+  company: "Data Machine"
   license: "license (BSD, MIT)"
   min_ansible_version: 1.4
   platforms:
   - name: EL
     versions:
-    - 6
-  categories:
-    - packaging
+    - 7

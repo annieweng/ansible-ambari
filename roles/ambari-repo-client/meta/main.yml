@@ -1,12 +1,10 @@
 ---
 dependencies:
- - { role: common }
- - { role: ambari-repo-client }
-
+ - { role: geerlingguy.repo-epel }
 
 galaxy_info:
   author: Annie Weng
-  description: Installation for Apache Ambari agent
+  description: Installation  common component for Apache Ambari HDP cluster
   company: "Data Machine"
   license: "license (BSD, MIT)"
   min_ansible_version: 1.4

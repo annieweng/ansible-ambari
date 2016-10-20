@@ -1,0 +1,7 @@
+127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1       localhost localhost.localdomain localhost6 localhost6.localdomain6
+10.104.1.218 ambari-server ambari-server.dsra.local
+10.104.1.220 hdp-node1 hdp-node1.dsra.local
+10.104.1.198 hdp-node2 hdp-node2.dsra.local
+10.104.1.221 hdp-master hdp-master.dsra.local
+

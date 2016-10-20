@@ -1,21 +1,22 @@
 [ambari]
-c6401.ambari.apache.org
+ambari-server.dsra.local ansible_ssh_host=10.104.1.218
+
+[ambari_repo]
+ambari-server.dsra.local ansible_ssh_host=10.104.1.218
 
 [master1]
-c6402.ambari.apache.org
+hdp-master.dsra.local ansible_ssh_host=10.104.1.221 
 
 [master2]
-c6403.ambari.apache.org
+hdp-node1.dsra.local ansible_ssh_host=10.104.1.220
 
 [slaves]
-c6404.ambari.apache.org
-c6405.ambari.apache.org
-c6406.ambari.apache.org
-c6407.ambari.apache.org
+hdp-node2.dsra.local ansible_ssh_host=10.104.1.198
+
 
 [all:vars]
-ansible_ssh_user=janecobb
-ansible_ssh_private_key_file=~/.ssh/id_rsa
+ansible_ssh_user=centos
+private_key_file=/Users/aweng/Documents/keys/aweng-test.pem
 
 
 ##################################

@@ -1,25 +1,37 @@
 ---
 
 java_home: /etc/alternatives/java_sdk
-
+cluster_domain:  dsra.local
+isNotRepo: True
 # paramaters passed to the various ambari roles
 ambari:
 
   # ambari API vars
   stack_name : HDP
-  stack_version : 2.2
-
+  stack_version : 2.3
   # blueprint & cluster creation
-  blueprint_name : example
-  cluster_name : serenity
+  blueprint_name : hadoop
+  cluster_name : netdefense
 
   # hadoop configuration
   default_password : hadoop
   hive_user : hive
-  hive_pass : supersecret
-  nagios_contact : root@localhost
+  hive_pass : admin
+
 
 ####################
 # don't touch this unless you know what you're doing
+
   ambari_server: "{{ hostvars[groups['ambari'][0]]['ansible_fqdn'] }}"
 #  ambari_server: "{{ hostvars[groups['ambari'][0]]['ansible_ssh_host'] }}"
+  ambari_repo_server: "{{ hostvars[groups['ambari_repo'][0]]['ansible_fqdn'] }}" 
+
+repository:
+      # 
+      # If using local repository, you need to fill the information below
+      #
+      local_repo : True
+
+      hdp_baseurl : http://{{ hostvars[groups['ambari_repo'][0]]['ansible_fqdn'] }}/hdp/centos{{ ansible_distribution_major_version }}/HDP-2.3.4.0
+      hdp_utils_baseurl : http://{{ hostvars[groups['ambari_repo'][0]]['ansible_fqdn'] }}/hdp_utils/centos{{ ansible_distribution_major_version }}/HDP-UTILS-1.1.0.20
+      ambari_baseurl : http://{{ hostvars[groups['ambari_repo'][0]]['ansible_fqdn'] }}/ambari/centos{{ ansible_distribution_major_version }}/Updates-ambari-2.2.0.0

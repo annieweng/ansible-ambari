@@ -4,6 +4,7 @@
 
 - name: Ensure ambari-server is stopped
   service: name=ambari-server state=stopped
+  ignore_errors: yes
 
 - name : Create folder
   file : dest=/opt/ambari-install state=directory mode=0755
@@ -16,6 +17,18 @@
 - name : check if ambari-server is installed
   wait_for : path=/tmp/ambari-install-output search_regex="completed successfully"
 
+#- name: fix ROOT env in /etc/init.d/ambari-server bug
+#  lineinfile:
+#    dest=/etc/init.d/ambari-server
+#    regexp="^ROOT="
+#    line="export ROOT='/'"
+#    insertbefore=no
+#    state=present
+
+    
+#- name: reload systemd
+#  command: sudo systemctl daemon-reload
+  
 - name : start ambari server and enabled at reboot
   service : name=ambari-server state=restarted enabled=yes
 
